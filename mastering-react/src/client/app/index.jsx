@@ -1,67 +1,139 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Textbox from './Textbox.jsx';
+"use strict";
+var React = require("react");
+var ReactDOM = require("react-dom")
+var Joi = require("joi");
+var JoiValidationStrategy = require("joi-validation-strategy");
+var ReactValidationMixin = require("react-validation-mixin");
 
-var InputTextBox = React.createClass({
-  render: function () {
-    return <input 
-              type="text" 
-              name={this.props.name} 
-              value={this.props.value} 
-              onChange={this.props.onChange} />
-  }
-});
-
-var TypingForm = React.createClass({
-  getInitialState: function () {
-    return {
-      form: {
-        first: 'a',
-        last: 'b'
-      }
-    };
-  },
-  onChange: function (event) {
-    this.state.form[event.target.name] = event.target.value;
-    this.setState({ form: this.state.form });
-  },
-  render: function () {
-    var self = this;
+var ValidatedInput = React.createClass({
+  renderHelpText: function (message) {
     return (
-      <form>
-        <InputTextBox
-          name='first'
-          value={this.state.form.first}
-          onChange={this.onChange} />
-        <br />
-        <InputTextBox
-          name='last'
-          value={this.state.form.last}
-          onChange={this.onChange} />
-      </form >
+      <span className="help-block">
+        {message}
+      </span>
     );
-  }
-});
-
-var App = React.createClass({
-  getInitialState: function () {
-    return { firstName: '', lastName: '' };
-  },
-  updated: function (key, value) {
-    var newState = {};
-    newState[key] = value;
-    this.setState(newState);
   },
   render: function () {
+    var error
+      = this.props.getValidationMessages(
+        this.props.name);
+
+    var formClass = "form-group";
+
+    if (error.length > 0) {
+      formClass = formClass + " has-error";
+    }
+
+    const divProps = Object.assign({}, this.props);
+    delete divProps.getValidationMessages;
+
     return (
-      <div>
-        <TypingForm />
-        <p>
-          Hello {this.state.firstName} {this.state.lastName}!
-      </p>
+      <div className={formClass}>
+        <label className="control-label" htmlFor={this.props.name}>
+          {this.props.label}
+        </label>
+        <input className="form-control" {...divProps} />
+        {this.renderHelpText(error)}
       </div>
     );
   }
 });
 
-ReactDOM.render(< App />, document.getElementById('app'));
+var Demo = React.createClass({
+  validatorTypes: {
+    userName: Joi.string().required()
+      .label("User Name"),
+    password: Joi.string().required()
+      .regex(/[a-zA-Z0-9]{3,30}/)
+      .label("Password")
+  },
+  getValidatorData: function () {
+    return this.state;
+  },
+  getInitialState: function () {
+    return {
+      userName: "",
+      password: ""
+    };
+  },
+  onSubmit(event) {
+    event.preventDefault();
+
+    // Handle field level validations
+    var onValidate = function (error) {
+
+      if (error) {
+        if (error.userName) {
+          alert(error.userName);
+        }
+
+        if (error.password) {
+          alert(error.password);
+        }
+      }
+
+      // Handle form level validations
+      var passwordContainsUserName
+        = this.state.password.indexOf(
+          this.state.userName) > -1;
+
+      if (this.state.userName
+        && passwordContainsUserName) {
+        alert("Password cannot contain the user name.");
+        return;
+      }
+
+      if (!error) {
+        alert("Account created!");
+      }
+    };
+
+    this.props.validate(onValidate.bind(this));
+  },
+  onChange: function (event) {
+    var state = {};
+
+    state[event.target.name] = event.target.value;
+
+    this.setState(state);
+  },
+  render: function () {
+    return (
+      <div className="container">
+        <form onSubmit={this.onSubmit}>
+          <ValidatedInput
+            name="userName"
+            type="text"
+            ref="userName"
+            placeholder="Enter User Name"
+            label="User Name"
+            value={this.state.userName}
+            onChange={this.onChange}
+            onBlur={this.props.handleValidation("userName")}
+            getValidationMessages=
+            {this.props.getValidationMessages} />
+          <ValidatedInput
+            name="password"
+            className="form-control"
+            type="text"
+            ref="password"
+            placeholder="Enter Password"
+            label="Password"
+            value={this.state.password}
+            onChange={this.onChange}
+            onBlur={this.props.handleValidation("password")}
+            getValidationMessages=
+            {this.props.getValidationMessages} />
+          <button className="btn btn-success" type="submit">
+            Submit
+                </button>
+        </form>
+      </div>
+    );
+  }
+});
+
+// Decorate our component with validations support
+var ValidationDemo
+  = ReactValidationMixin(JoiValidationStrategy)(Demo);
+ReactDOM.render(<ValidationDemo />, document.getElementById('app'));

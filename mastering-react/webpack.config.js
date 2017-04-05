@@ -10,15 +10,20 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
-    module : {
-        loaders : [
-          {
-            test : /\.jsx?/,
-            include : APP_DIR,
-            loader : 'babel-loader'
-          }
-        ]
-    }
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?/,
+        include: APP_DIR,
+        loader: 'babel-loader'
+      }
+    ]
+  },
+  node: { //https://github.com/hapijs/joi/issues/665#issuecomment-113713020
+    net: 'empty',
+    tls: 'empty',
+    dns: 'empty'
+  }
 };
 
 module.exports = config;
