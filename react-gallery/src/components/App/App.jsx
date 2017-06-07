@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-var App = React.createClass({
-  render: function() {
-    return (
-      <h1>hello !!!</h1>
-    );
+class App extends Component {
+  render() {
+    return <button />;
   }
-});
+}
 
 export default App;
