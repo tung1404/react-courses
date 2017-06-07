@@ -1,0 +1,31 @@
+{
+	// See http://go.microsoft.com/fwlink/?LinkId=827846
+	// for the documentation about the extensions.json format
+	"recommendations": [
+		// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+		"christian-kohler.path-intellisense",
+		"Compulim.compulim-vscode-closetag",
+		"dbaeumer.vscode-eslint",
+		"donjayamanne.python",
+		"dzannotti.vscode-babel-coloring",
+		"eg2.tslint",
+		"EQuimper.react-native-react-redux",
+		"esbenp.prettier-vscode",
+		"felixfbecker.php-debug",
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-rename-tag",
+		"hbenl.vscode-firefox-debug",
+		"humao.rest-client",
+		"lihui.vs-color-picker",
+		"mohsen1.prettify-json",
+		"msjsdiag.debugger-for-chrome",
+		"PeterJausovec.vscode-docker",
+		"robertohuertasm.vscode-icons",
+		"TimonVS.ReactSnippetsStandard",
+		"TwentyChung.jsx",
+		"vsmobile.vscode-react-native",
+		"waderyan.gitblame",
+		"webstp.extension-manager",
+		"wmira.react-playground-vscode"
+	]
+}
