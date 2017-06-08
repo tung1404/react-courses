@@ -26,6 +26,7 @@
 		"vsmobile.vscode-react-native",
 		"waderyan.gitblame",
 		"webstp.extension-manager",
-		"wmira.react-playground-vscode"
+		"wmira.react-playground-vscode",
+		"flowtype.flow-for-vscode"
 	]
 }
