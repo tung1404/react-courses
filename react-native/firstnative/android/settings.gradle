@@ -1,0 +1,3 @@
+rootProject.name = 'firstnative'
+
+include ':app'
