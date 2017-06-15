@@ -3,12 +3,12 @@ import React, { Component } from "react";
 class App extends Component {
   render() {
     return (
-      <div>
+      <span>
         {[1, 2, 3].map(function(item, i) {
-          var b = <p>PI {i} </p>;
+          var b = <p>Hi, {i} </p>;
           return b;
         })}
-      </div>
+      </span>
     );
   }
 }
