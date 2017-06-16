@@ -1,16 +1,31 @@
 import React, { Component } from "react";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = { comments: [] };
+  }
+  componentDidMount() {
+    fetchSomeComments(comments => {
+      this.setState({ comments: comments });
+    });
+  }
   render() {
     return (
-      <span>
-        {[1, 2, 3].map(function(item, i) {
-          var b = <p>Hi, {i} </p>;
+      <ul>
+        {this.state.comments.map(c => {
+          var b = <ul>{c.author}: {c.body}</ul>;
           return b;
         })}
-      </span>
+      </ul>
     );
   }
 }
+
+const fetchSomeComments = cb =>
+  cb([
+    { author: "Chan", body: "You look nice today." },
+    { author: "You", body: "I know, right?!" }
+  ]);
 
 export default App;
