@@ -1,6 +1,8 @@
+// @flow
 import React, { Component } from "react";
 
 class App extends Component {
+  state: { comments: any };
   constructor() {
     super();
     this.state = { comments: [] };
