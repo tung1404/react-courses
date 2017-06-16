@@ -1,8 +1,13 @@
 // @flow
 import React, { Component } from "react";
 
+type Comment = {
+  author: string,
+  body: string,
+};
+
 class App extends Component {
-  state: { comments: any };
+  state: { comments: Array<Comment> };
   constructor() {
     super();
     this.state = { comments: [] };
