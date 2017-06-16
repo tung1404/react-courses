@@ -6,6 +6,7 @@
 		"christian-kohler.path-intellisense",
 		"Compulim.compulim-vscode-closetag",
 		"dbaeumer.vscode-eslint",
+		"RobinMalfait.prettier-eslint-vscode",
 		"donjayamanne.python",
 		"dzannotti.vscode-babel-coloring",
 		"eg2.tslint",
