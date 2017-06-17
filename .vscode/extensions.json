@@ -3,6 +3,7 @@
 	// for the documentation about the extensions.json format
 	"recommendations": [
 		// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+		"coderfee.open-html-in-browser",
 		"christian-kohler.path-intellisense",
 		"Compulim.compulim-vscode-closetag",
 		"dbaeumer.vscode-eslint",
