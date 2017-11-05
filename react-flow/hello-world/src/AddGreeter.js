@@ -1,7 +1,6 @@
 /* @flow */
 "use strict";
 import React, { Component } from "react";
-import SyntheticInputEvent from "react/";
 import "./AddGreeter.css";
 import { Props, State } from "./types";
 
