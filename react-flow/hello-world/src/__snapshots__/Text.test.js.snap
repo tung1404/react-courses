@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`class Text extends _react2.default.Component {
+
+
+
+  constructor(props) {
+    super(props);this.
+
+
+
+
+    removeGreeting = function () {
+      this.props.removeGreeting(this.props.ten);
+    };this.state = { name: props.ten };this.removeGreeting = this.removeGreeting.bind(this);}
+
+  render() {
+    return (
+      _react2.default.createElement("div", { className: "Text", __source: { fileName: _jsxFileName, lineNumber: 24 }, __self: this }, "Hi, ",
+        this.state.name, "!",
+        _react2.default.createElement("br", { __source: { fileName: _jsxFileName, lineNumber: 26 }, __self: this }),
+        _react2.default.createElement("button", { onClick: this.removeGreeting, __source: { fileName: _jsxFileName, lineNumber: 27 }, __self: this }, "Remove Me!")));
+
+
+  }} renders and matches our snapshot 1`] = `
+<div
+  className="Text"
+>
+  Hi, 
+  Person
+  !
+  <br />
+  <button
+    onClick={[Function]}
+  >
+    Remove Me!
+  </button>
+</div>
+`;

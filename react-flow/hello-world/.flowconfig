@@ -1,0 +1,17 @@
+[ignore]
+.*/node_modules/enzyme-matchers/*
+.*/node_modules/fbemitter/node_modules/*
+.*/node_modules/fbjs/*
+.*/node_modules/flux/*
+.*/node_modules/jasmine-enzyme/*
+.*/node_modules/react-event-listener/*
+.*/node_modules/react-motion/*
+
+[libs]
+<PROJECT_ROOT>/flow-typed/
+
+[options]
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+module.name_mapper='.+\(.s?css\)' -> 'CSSModule'
+module.name_mapper='components' -> '<PROJECT_ROOT>/components'
